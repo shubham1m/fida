@@ -1,0 +1,13 @@
+version: "3.9"
+
+# Production override: applied on top of docker-compose.yml via
+#   docker compose -f docker-compose.yml -f docker-compose.prod.yml up
+# Removes local volume mounts (Azure Container Apps storage is configured
+# separately) and disables restart-on-crash loops from masking failures.
+services:
+  backend:
+    restart: unless-stopped
+    volumes: []
+
+  frontend:
+    restart: unless-stopped
